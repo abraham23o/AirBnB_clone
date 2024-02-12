@@ -30,13 +30,6 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
-    def _split(self, arg):
-        """
-        split line into substrings based on double
-        quotes and spaces
-        """
-        pass
-
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
