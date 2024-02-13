@@ -15,3 +15,12 @@ class City(BaseModel):
     """
     state_id = ""
     name = ""
+
+    def __init__(self, *args, **kwargs):
+        """init method for State class
+
+        Attributes:
+            args (list): The list with arguments
+            kwargs (dict): A dictionary with arguments
+        """
+        super().__init__(*args, **kwargs)
