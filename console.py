@@ -6,6 +6,9 @@ import cmd
 import re
 
 from models import storage
+from models.base_model import BaseModel
+from models.user import User
+
 
 
 class HBNBCommand(cmd.Cmd):
@@ -16,6 +19,15 @@ class HBNBCommand(cmd.Cmd):
 
     __classes = {
         "BaseModel"
+        "User"
+    }
+
+    __commands = {
+        'all': r'^\.all(\(\))$',
+        'count': r'^\.count(\(\))$',
+        'show': r'^\.show(\.*?\))$',
+        'destroy': r'^\.destroy(\.*?\))$',
+        'update': r'^\.update(\.*?\))$',
     }
 
     def do_EOF(self, line):
