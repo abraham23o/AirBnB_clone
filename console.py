@@ -6,9 +6,6 @@ import cmd
 import re
 
 from models import storage
-from models.base_model import BaseModel
-from models.user import User
-
 
 
 class HBNBCommand(cmd.Cmd):
@@ -18,13 +15,18 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     __classes = {
-        "BaseModel"
-        "User"
+        "BaseModel",
+        "User",
+        "State",
+        "Place",
+        "City",
+        "Review",
+        "Amenity"
     }
 
     __commands = {
         'all': r'^\.all(\(\))$',
-        'count': r'^\.count(\(\))$',
+        'create': r'^\.create(\.*?\))$',
         'show': r'^\.show(\.*?\))$',
         'destroy': r'^\.destroy(\.*?\))$',
         'update': r'^\.update(\.*?\))$',
@@ -158,10 +160,41 @@ class HBNBCommand(cmd.Cmd):
         if not kwargs and len(words) < 4:
             return print("** value missing **")
         if not kwargs:
-            kwargs = {words[2] : words[3]}
+            kwargs = {words[2]: words[3]}
             for k, v in kwargs.items():
                 setattr(new_instance, k, v)
             new_instance.save()
+
+    def parse_line(self, line, clas):
+        """parse the input string"""
+
+        command = line[len(clas):]
+        for i in self.__commands.keys():
+            match = re.match(self.__commands[i], command)
+            if match:
+                args = eval(match.group(1))
+                if not args:
+                    return "{} {}".format(i, clas)
+                if type(args) is not tuple:
+                    args = [args]
+                args = " ".join([self._eval(arg) for arg in args])
+                return "{} {} {}".format(i, clas, args)
+        return line
+
+    def onecmd(self, line):
+        """Override to handle advanced commands"""
+        if line in ['all', '.all()']:
+            return self.do_all("")
+        pattern = r"([a-zA-Z]*)\.(all|count|show|destroy|update)"
+        match = re.search(pattern, line)
+        if match:
+            clas = match.group(1)
+            if not clas:
+                return print("** class name missing **")
+            elif clas not in self.__classes:
+                return print("** class doesn't exist **")
+            line = self.parse_line(line, clas)
+        return super(HBNBCommand, self).onecmd(line)
 
 
 if __name__ == "__main__":
