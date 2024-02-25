@@ -6,23 +6,20 @@
     border: solid 1px #DDDDDD;
     border-radius: 4px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-.locations,
-.amenities {
+.locations {
+    border-right: solid 1px #DDDDDD;
     height: 100%;
     width: 25%;
     color: black;
 }
 
-.locations {
-    border-right: solid 1px #DDDDDD;
-}
-
 .amenities {
-
+    height: 100%;
+    width: 25%;
+    color: black;
 }
 
 .locations h3,
