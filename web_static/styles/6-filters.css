@@ -24,10 +24,6 @@
     border-right: solid 1px #DDDDDD;
 }
 
-.amenities {
-    margin-left: 10px;
-}
-
 .locations h3,
 .amenities h3 {
     font-weight: 600;
@@ -84,6 +80,11 @@ button:hover {
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
 }
+
+.filters .popover li {
+    list-style: none;
+}
+
 .amenities .popover {
 	left: 25%;
 	padding: 12px;
