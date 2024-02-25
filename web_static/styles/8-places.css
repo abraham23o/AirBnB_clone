@@ -15,6 +15,7 @@ article {
     margin: 20px;
     border: solid 1px #FF5A5F;
     border-radius: 4px;
+    position: relative;
 }
 
 .places h2 {
@@ -30,29 +31,17 @@ article {
     font-size: 24px;
     top: 20px;
     right: 20px;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.title {
-    display: inline-block;
-}
-
-.title h2 {
-    text-align: left;
-    width: 70%;
-}
-
-.title > .price_by_night {
-    width: 30%
 }
 
 .information {
     height: 80px;
     border-top: 1px solid #DDDDDD;
     border-bottom: 1px solid #DDDDDD;
-    padding: 0, 20px;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
